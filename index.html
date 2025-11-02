@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Budget Tracker — Category, Monthly Summary & Goals</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="container">
+        <header class="topbar">
+            <h1>Budget Tracker</h1>
+            <div class="controls-top">
+                <button id="theme-toggle">🌙 Dark Mode</button>
+            </div>
+        </header>
+
+        <!-- Form -->
+        <section class="form-section">
+            <div class="form-row">
+                <select id="type" aria-label="Transaction type">
+          <option value="income">Income</option>
+          <option value="expense">Expense</option>
+        </select>
+
+                <input id="description" type="text" placeholder="Description" aria-label="Description" />
+
+                <!-- Category selection -->
+                <select id="category" aria-label="Category">
+          <!-- default categories; user can modify by editing code for now -->
+          <option value="Salary">Salary</option>
+          <option value="Food">Food</option>
+          <option value="Transport">Transport</option>
+          <option value="Shopping">Shopping</option>
+          <option value="Bills">Bills</option>
+          <option value="Other">Other</option>
+        </select>
+
+                <input id="amount" type="number" placeholder="Amount (₹)" aria-label="Amount" />
+                <button id="add-btn">Add</button>
+            </div>
+            <div class="form-row secondary">
+                <label for="date">Date:</label>
+                <input id="date" type="date" />
+                <small class="hint">If empty, current date will be used</small>
+            </div>
+        </section>
+
+        <!-- Stats -->
+        <section class="stats-section">
+            <div class="main-summary">
+                <div class="stat-card">
+                    <h3>Total Income</h3>
+                    <p id="income">₹0.00</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Total Expense</h3>
+                    <p id="expense">₹0.00</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Balance</h3>
+                    <p id="balance">₹0.00</p>
+                </div>
+            </div>
+
+            <!-- Monthly controls & goal -->
+            <div class="month-goal-row">
+                <div class="month-nav">
+                    <button id="prev-month" title="Previous month">◀</button>
+                    <div id="selected-month" class="month-label">—</div>
+                    <button id="next-month" title="Next month">▶</button>
+                </div>
+
+                <div class="goal-control">
+                    <label for="monthly-goal">Monthly Goal (₹)</label>
+                    <input id="monthly-goal" type="number" placeholder="Set monthly expense goal" />
+                    <button id="save-goal">Save Goal</button>
+                </div>
+            </div>
+
+            <!-- Monthly summary & progress -->
+            <div class="monthly-summary">
+                <div class="month-summary-card">
+                    <h4>Month Income</h4>
+                    <p id="month-income">₹0.00</p>
+                </div>
+                <div class="month-summary-card">
+                    <h4>Month Expense</h4>
+                    <p id="month-expense">₹0.00</p>
+                </div>
+                <div class="month-summary-card">
+                    <h4>Month Balance</h4>
+                    <p id="month-balance">₹0.00</p>
+                </div>
+
+                <div class="goal-progress">
+                    <div class="goal-header">
+                        <div>Budget Goal:</div>
+                        <div id="goal-value">—</div>
+                    </div>
+                    <div class="progress-bar">
+                        <div id="progress-fill" style="width: 0%"></div>
+                    </div>
+                    <div id="goal-feedback" class="goal-feedback">Set a monthly budget goal to track progress.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Last 6 months overview -->
+        <section class="overview-section">
+            <h3>Last 6 months</h3>
+            <div id="six-months" class="six-months-grid">
+                <!-- generated cards -->
+            </div>
+        </section>
+
+        <!-- History and filters -->
+        <section class="history-section">
+            <div class="history-header">
+                <h2>Transaction History</h2>
+                <div class="filters">
+                    <label for="filter">Filter:</label>
+                    <select id="filter">
+            <option value="all">All</option>
+            <option value="income">Income</option>
+            <option value="expense">Expense</option>
+          </select>
+                    <label for="search">Search:</label>
+                    <input id="search" type="search" placeholder="search description or category" />
+                </div>
+            </div>
+
+            <ul id="transactions" class="transactions-list"></ul>
+        </section>
+
+        <footer class="footer-note">
+            <small>Transactions saved locally in your browser (localStorage).</small>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

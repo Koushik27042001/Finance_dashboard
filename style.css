@@ -1,0 +1,720 @@
+/* ====== Basic / layout ====== */
+
+:root {
+    --bg: #f4f7fb;
+    --card: #fff;
+    --muted: #6b7280;
+    --accent: linear-gradient(45deg, #00c6ff, #0072ff);
+    --income: #00c851;
+    --expense: #ff4444;
+    --glass: rgba(255, 255, 255, 0.9);
+    --hover-shadow: 0 12px 40px rgba(2, 6, 23, 0.12);
+    --active-shadow: 0 4px 15px rgba(2, 6, 23, 0.05);
+}
+
+
+/* Global transitions for interactive elements */
+
+* {
+    box-sizing: border-box;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+body {
+    margin: 0;
+    font-family: Inter, "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background: var(--bg);
+    color: #111827;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.5;
+    /* Improved readability */
+}
+
+.container {
+    width: 94%;
+    max-width: 1100px;
+    margin: 28px auto;
+    background: var(--glass);
+    border-radius: 16px;
+    /* Slightly larger radius */
+    padding: 24px;
+    /* Increased padding */
+    box-shadow: 0 12px 40px rgba(2, 6, 23, 0.1);
+    /* Stronger initial shadow */
+    backdrop-filter: blur(10px);
+    /* Glassmorphism effect */
+    -webkit-backdrop-filter: blur(10px);
+}
+
+
+/* Topbar */
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+    /* Increased margin */
+}
+
+.topbar h1 {
+    font-size: 1.6rem;
+    /* Slightly larger heading */
+    margin: 0;
+    font-weight: 700;
+    color: #1a202c;
+    /* Darker for better contrast */
+}
+
+.controls-top {
+    display: flex;
+    gap: 10px;
+    /* Increased gap */
+}
+
+
+/* Form */
+
+.form-section {
+    margin-bottom: 24px;
+    /* Increased margin */
+}
+
+.form-row {
+    display: flex;
+    gap: 12px;
+    /* Increased gap */
+    align-items: center;
+    flex-wrap: wrap;
+    /* Allow wrapping on smaller screens */
+}
+
+.form-row.secondary {
+    margin-top: 10px;
+    /* Increased margin */
+    align-items: center;
+}
+
+.form-row select,
+.form-row input {
+    padding: 12px 14px;
+    /* Increased padding */
+    border-radius: 12px;
+    /* Slightly larger radius */
+    border: 1px solid #d1d5db;
+    background: white;
+    font-size: 1rem;
+    /* Slightly larger font */
+    flex: 1;
+    /* Allow inputs to grow */
+    min-width: 120px;
+    /* Minimum width for inputs */
+}
+
+.form-row select:focus,
+.form-row input:focus {
+    outline: none;
+    border-color: #0072ff;
+    box-shadow: 0 0 0 3px rgba(0, 114, 255, 0.2);
+}
+
+.form-row .hint {
+    font-size: 0.875rem;
+    /* Slightly larger hint */
+    color: var(--muted);
+    margin-left: 8px;
+}
+
+#add-btn {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    /* Increased padding */
+    border-radius: 12px;
+    /* Slightly larger radius */
+    cursor: pointer;
+    font-weight: 700;
+    /* Bolder font */
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(0, 114, 255, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
+}
+
+#add-btn:hover {
+    transform: translateY(-3px);
+    /* More pronounced lift */
+    box-shadow: 0 8px 25px rgba(0, 114, 255, 0.3);
+    /* Stronger shadow */
+    background: linear-gradient(45deg, #00c6ff, #0056b3);
+    /* Slightly darker gradient on hover */
+}
+
+
+/* Stats */
+
+.stats-section {
+    margin-bottom: 24px;
+    /* Increased margin */
+}
+
+.main-summary {
+    display: flex;
+    gap: 16px;
+    /* Increased gap */
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+    /* Increased margin */
+}
+
+.stat-card {
+    background: var(--card);
+    padding: 18px;
+    /* Increased padding */
+    border-radius: 14px;
+    /* Slightly larger radius */
+    min-width: 180px;
+    /* Increased min-width */
+    flex: 1;
+    box-shadow: 0 8px 25px rgba(2, 6, 23, 0.06);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    /* Lift effect */
+    box-shadow: var(--hover-shadow);
+    /* More prominent shadow on hover */
+}
+
+.stat-card h3 {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+    /* Slightly larger font */
+    font-weight: 600;
+}
+
+.stat-card p {
+    margin: 8px 0 0;
+    /* Increased margin */
+    font-size: 1.3rem;
+    /* Larger font */
+    font-weight: 800;
+    /* Bolder font */
+    letter-spacing: 0.2px;
+}
+
+.stat-card.income p {
+    color: var(--income);
+}
+
+.stat-card.expense p {
+    color: var(--expense);
+}
+
+.stat-card.balance p {
+    color: #0072ff;
+}
+
+
+/* Accent color for balance */
+
+
+/* month + goal */
+
+.month-goal-row {
+    display: flex;
+    gap: 16px;
+    /* Increased gap */
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+    /* Increased margin */
+}
+
+.month-nav {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    /* Increased gap */
+}
+
+.month-label {
+    padding: 12px 18px;
+    /* Increased padding */
+    border-radius: 10px;
+    /* Slightly larger radius */
+    background: var(--card);
+    box-shadow: 0 6px 18px rgba(2, 6, 23, 0.05);
+    font-weight: 600;
+    color: #333;
+}
+
+.month-nav button {
+    padding: 10px 14px;
+    /* Increased padding */
+    border-radius: 10px;
+    /* Slightly larger radius */
+    border: 1px solid #e5e7eb;
+    background: white;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.month-nav button:hover {
+    background: #f0f4f8;
+    border-color: #cdd5df;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+
+/* goal control */
+
+.goal-control {
+    display: flex;
+    gap: 10px;
+    /* Increased gap */
+    align-items: center;
+}
+
+.goal-control input {
+    width: 180px;
+    /* Increased width */
+    padding: 10px 14px;
+    border-radius: 10px;
+}
+
+.goal-control input:focus {
+    border-color: #0072ff;
+    box-shadow: 0 0 0 3px rgba(0, 114, 255, 0.2);
+}
+
+
+/* monthly summary and progress */
+
+.monthly-summary {
+    display: flex;
+    gap: 16px;
+    /* Increased gap */
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.month-summary-card {
+    background: var(--card);
+    padding: 15px;
+    /* Increased padding */
+    border-radius: 10px;
+    min-width: 150px;
+    /* Increased min-width */
+    box-shadow: 0 6px 20px rgba(2, 6, 23, 0.04);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.month-summary-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(2, 6, 23, 0.08);
+}
+
+.month-summary-card h4 {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.month-summary-card p {
+    margin: 8px 0 0;
+    /* Increased margin */
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.goal-progress {
+    flex: 1;
+    min-width: 280px;
+    /* Increased min-width */
+    background: var(--card);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(2, 6, 23, 0.04);
+}
+
+.goal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    /* Increased margin */
+    color: var(--muted);
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.progress-bar {
+    height: 14px;
+    /* Slightly taller */
+    background: #e2e8f0;
+    /* Lighter background for progress bar */
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    /* For the fill animation */
+}
+
+#progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #10b981, #06b6d4);
+    width: 0%;
+    /* Initial state for animation */
+    border-radius: 10px;
+    /* Ensure rounded corners */
+    transition: width 0.8s ease-out;
+    /* Smooth fill animation */
+    will-change: width;
+    /* Optimize for animation */
+}
+
+
+/* six-months overview */
+
+.overview-section {
+    margin-top: 28px;
+    /* Increased margin */
+    margin-bottom: 24px;
+    /* Increased margin */
+}
+
+.six-months-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    /* Adjusted minmax */
+    gap: 12px;
+    /* Increased gap */
+    margin-top: 12px;
+    /* Increased margin */
+}
+
+.month-card {
+    background: var(--card);
+    padding: 15px;
+    /* Increased padding */
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(2, 6, 23, 0.04);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.month-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(2, 6, 23, 0.08);
+}
+
+.month-card h5 {
+    margin: 0;
+    font-size: 0.95rem;
+    /* Slightly larger font */
+    color: var(--muted);
+    font-weight: 600;
+}
+
+.month-card p {
+    margin: 8px 0 0;
+    /* Increased margin */
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+
+/* history */
+
+.history-section {
+    margin-bottom: 20px;
+    /* Increased margin */
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    /* Increased gap */
+    flex-wrap: wrap;
+}
+
+.history-header h2 {
+    font-size: 1.3rem;
+    color: #1a202c;
+    margin: 0;
+}
+
+.filters {
+    display: flex;
+    gap: 10px;
+    /* Increased gap */
+    align-items: center;
+}
+
+.filters input,
+.filters select {
+    /* Also style select if present in filters */
+    padding: 9px 12px;
+    /* Adjusted padding */
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+    background: white;
+    font-size: 0.95rem;
+}
+
+.filters input:focus,
+.filters select:focus {
+    outline: none;
+    border-color: #0072ff;
+    box-shadow: 0 0 0 3px rgba(0, 114, 255, 0.2);
+}
+
+
+/* transactions list */
+
+.transactions-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 16px;
+    /* Increased margin */
+    display: grid;
+    gap: 12px;
+    /* Spacing between list items */
+}
+
+.tx-item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    /* Increased gap */
+    padding: 15px;
+    /* Increased padding */
+    border-radius: 12px;
+    /* Slightly larger radius */
+    background: var(--card);
+    box-shadow: 0 6px 20px rgba(2, 6, 23, 0.04);
+    border-left: 6px solid #ddd;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-left-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.tx-item:hover {
+    transform: translateY(-4px);
+    /* Slight lift */
+    box-shadow: var(--hover-shadow);
+}
+
+.tx-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    /* Increased gap */
+    flex-wrap: wrap;
+    /* Allow wrapping for description/amount */
+}
+
+.tx-left {
+    display: flex;
+    gap: 12px;
+    /* Increased gap */
+    align-items: center;
+    min-width: 0;
+    flex-grow: 1;
+    /* Allow left section to grow */
+}
+
+.tx-cat {
+    font-size: 0.85rem;
+    padding: 7px 10px;
+    /* Adjusted padding */
+    border-radius: 10px;
+    background: #f3f4f6;
+    color: #374151;
+    font-weight: 500;
+    white-space: nowrap;
+    /* Prevent category from wrapping */
+}
+
+.tx-desc {
+    font-weight: 600;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #2d3748;
+    font-size: 1.05rem;
+}
+
+.tx-amount {
+    font-weight: 700;
+    min-width: 90px;
+    /* Increased min-width */
+    text-align: right;
+    font-size: 1.1rem;
+    color: #1a202c;
+}
+
+.tx-date {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-top: 4px;
+    /* Space below main row */
+    align-self: flex-start;
+    /* Align date to start if multi-line */
+}
+
+.tx-actions button {
+    background: #fee2e2;
+    border: none;
+    color: var(--expense);
+    padding: 8px 10px;
+    /* Adjusted padding */
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.tx-actions button:hover {
+    background: var(--expense);
+    color: white;
+    transform: scale(1.05);
+    /* Slight scale on hover */
+}
+
+
+/* colors by type */
+
+.tx-item.income {
+    border-left-color: var(--income);
+}
+
+.tx-item.expense {
+    border-left-color: var(--expense);
+}
+
+.tx-item.income .tx-amount {
+    color: var(--income);
+}
+
+.tx-item.expense .tx-amount {
+    color: var(--expense);
+}
+
+
+/* footer */
+
+.footer-note {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.875rem;
+    /* Slightly larger */
+    padding: 16px 0;
+    /* Increased padding */
+}
+
+
+/* dark theme */
+
+body.dark {
+    background: #0b1220;
+    color: #e6eef8;
+}
+
+body.dark .container {
+    background: linear-gradient(180deg, #111827, #0b1220);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+body.dark .topbar h1 {
+    color: #e6eef8;
+}
+
+body.dark .stat-card,
+body.dark .month-label,
+body.dark .month-card,
+body.dark .tx-item {
+    background: #1a243a;
+    /* Darker card background */
+    color: #e6eef8;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+body.dark .stat-card:hover,
+body.dark .month-card:hover,
+body.dark .tx-item:hover {
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    transform: translateY(-5px);
+}
+
+body.dark .tx-cat {
+    background: #2d3748;
+    /* Darker category tag */
+    color: #c7d2fe;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+body.dark input,
+body.dark select {
+    background: #1a243a;
+    color: #e6eef8;
+    border: 1px solid #2d3748;
+}
+
+body.dark input:focus,
+body.dark select:focus {
+    border-color: #0072ff;
+    box-shadow: 0 0 0 3px rgba(0, 114, 255, 0.3);
+}
+
+body.dark #progress-fill {
+    background: linear-gradient(90deg, #059669, #0891b2);
+}
+
+body.dark .goal-progress {
+    background: #1a243a;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+body.dark .history-header h2 {
+    color: #e6eef8;
+}
+
+body.dark .month-nav button {
+    background: #2d3748;
+    border-color: #4a5568;
+    color: #e6eef8;
+}
+
+body.dark .month-nav button:hover {
+    background: #3a4760;
+    border-color: #6a768e;
+    transform: translateY(-2px);
+}
+
+body.dark .tx-desc,
+body.dark .tx-amount {
+    color: #e6eef8;
+}
+
+body.dark .tx-actions button {
+    background: #3a4760;
+    color: #ff7f7f;
+}
+
+body.dark .tx-actions button:hover {
+    background: var(--expense);
+    color: white;
+}
